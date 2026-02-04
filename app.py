@@ -2,10 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 import random
 
-# ===============================
-# Gemini API Configuration
-# ===============================
-genai.configure(api_key="AIzaSyABWESOo5ILhnp07Us_SZabVtCla_hXiMo")
+genai.configure(api_key="YOUR_API_KEY")
 
 generation_config = {
     "temperature": 0.75,
@@ -20,9 +17,6 @@ model = genai.GenerativeModel(
     generation_config=generation_config
 )
 
-# ===============================
-# Joke Generator
-# ===============================
 def get_joke():
     jokes = [
         "Why did the AI chef break up with the recipe? Too many mixed signals in the ingredients.",
@@ -36,10 +30,6 @@ def get_joke():
     ]
     return random.choice(jokes)
 
-
-# ===============================
-# Recipe Generation Function
-# ===============================
 def recipe_generation(user_input, word_count):
     try:
         st.info("⏳ Generating your recipe...")
@@ -64,9 +54,6 @@ def recipe_generation(user_input, word_count):
         st.error(f"❌ Error generating recipe: {e}")
         return None
 
-# ===============================
-# Streamlit UI
-# ===============================
 st.set_page_config(page_title="Flavour Fusion", page_icon="🍽️", layout="centered")
 
 st.title("🍽️ Flavour Fusion: AI-Driven Recipe Blogging")
@@ -83,3 +70,4 @@ if st.button("✨ Generate Recipe"):
         if result:
             st.markdown("---")
             st.markdown(result)
+
